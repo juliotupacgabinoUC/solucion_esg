@@ -95,3 +95,19 @@ class TestEcuacionSegundoGrado(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             ecuacionSegundoGrado.a = "a"
+
+    def test_solucionESG_parametrosNoNumericos_lanzaException_subTest(self):
+        ecuacionSegundoGrado = EcuacionSegundoGrado()
+
+        items = (
+            {"Case": "Caso 01", "a": "a", "b": "b", "c": "c"},
+            {"Case": "Caso 02", "a": "a", "b": 1, "c": 1},
+            {"Case": "Caso 03", "a": 1, "b": "aa", "c": 1},
+            {"Case": "Caso 03", "a": 1, "b": "3,1", "c": 1},
+        )
+        for item in items:
+            with self.subTest(item["Case"]):
+                with self.assertRaises(ValueError):
+                    ecuacionSegundoGrado.a = item["a"]
+                    ecuacionSegundoGrado.b = item["b"]
+                    ecuacionSegundoGrado.c = item["c"]
