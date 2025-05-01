@@ -89,3 +89,9 @@ class TestEcuacionSegundoGrado(unittest.TestCase):
             self.assertAlmostEqual(raiz_esperada1.imag, raiz_actual1.imag, 2)
             self.assertAlmostEqual(raiz_esperada2.real, raiz_actual2.real, 2)
             self.assertAlmostEqual(raiz_esperada2.imag, raiz_actual2.imag, 2)
+
+    def test_solucionESG_parametrosNoNumericos_lanzaException(self):
+        ecuacionSegundoGrado = EcuacionSegundoGrado()
+
+        with self.assertRaises(ValueError):
+            ecuacionSegundoGrado.a = "a"
